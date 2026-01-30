@@ -1,0 +1,56 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.page-title {
+  color: #333;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid #d32f2f;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.hobbies-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Le permite să treacă pe rândul următor */
+  gap: 1.5rem;
+  justify-content: center; /* Le centrează pe pagină */
+}
+
+.hobby-card {
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 50px; /* Formă de 'pill' (rotunjită) */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+
+  .icon {
+    color: #d32f2f;
+    font-size: 1.2rem;
+  }
+
+  .text {
+    font-weight: 600;
+    color: #555;
+    font-size: 1.1rem;
+  }
+
+  /* Efect la hover: se ridică și prinde contur roșu */
+  &:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: #d32f2f;
+
+    .text {
+      color: #d32f2f;
+    }
+  }
+}

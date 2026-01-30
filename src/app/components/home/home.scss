@@ -1,0 +1,92 @@
+/* Adaugă asta în interiorul .profile-card sau la început */
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem; /* Spațiu sub poză */
+}
+
+.avatar {
+  width: 150px;       /* Mărimea pozei */
+  height: 150px;
+  border-radius: 50%; /* O face perfect rotundă */
+  object-fit: cover;  /* Se asigură că poza nu e turtită dacă nu e pătrată */
+  border: 4px solid #fff; /* Ramă albă */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Umbră ca să iasă în relief */
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05) rotate(2deg); /* Un mic efect simpatic la mouse over */
+  }
+}
+.hero-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ocupă 80% din înălțimea ecranului */
+  background-color: #f5f5f5; /* Un gri foarte deschis, elegant */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-card {
+  text-align: center;
+  background: white;
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Umbră fină */
+  max-width: 600px;
+  width: 90%;
+
+  .name {
+    margin: 0;
+    color: #333;
+    font-size: 2.5rem;
+  }
+
+  .role {
+    margin-top: 0.5rem;
+    color: #d32f2f; /* Roșu Angular */
+    font-weight: 500;
+  }
+
+  .description {
+    color: #666;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+
+  .btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.2s, opacity 0.2s;
+
+    &:hover {
+      transform: translateY(-2px); /* Efect de ridicare la mouse over */
+      opacity: 0.9;
+    }
+  }
+
+  .btn-github {
+    background-color: #333;
+    color: white;
+  }
+
+  .btn-linkedin {
+    background-color: #0077b5;
+    color: white;
+  }
+
+  .btn-email {
+    background-color: #d32f2f;
+    color: white;
+  }
+}

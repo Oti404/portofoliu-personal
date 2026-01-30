@@ -1,0 +1,93 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid #d32f2f;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.projects-grid {
+  display: grid;
+  /* Coloane automate: minim 300px lățime, se umple rândul cât încap */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #2c3e50;
+  }
+}
+
+.id-badge {
+  font-size: 0.7rem;
+  color: #999;
+  font-family: monospace;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.tech-stack {
+  margin-bottom: 1.5rem;
+
+  .tech-tag {
+    display: inline-block;
+    background: #f0f2f5;
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+.btn-view {
+  display: block;
+  text-align: center;
+  background: #d32f2f;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #b71c1c;
+  }
+}

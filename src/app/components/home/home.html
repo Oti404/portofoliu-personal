@@ -1,0 +1,18 @@
+<div class="hero-container">
+  <div class="profile-card">
+
+    <div class="avatar-container" *ngIf="info.photo">
+      <img [src]="info.photo" alt="Profile Picture" class="avatar">
+    </div>
+
+    <h1 class="name">{{ info.firstName }} {{ info.lastName }}</h1>
+    <h2 class="role">{{ info.role }}</h2>
+    <p class="description">{{ info.about }}</p>
+
+    <div class="social-links">
+      <a *ngIf="info.github" [href]="info.github" target="_blank" class="btn btn-github">GitHub</a>
+      <a *ngIf="info.linkedin" [href]="info.linkedin" target="_blank" class="btn btn-linkedin">LinkedIn</a>
+      <a href="mailto:{{ info.email }}" class="btn btn-email">Contact</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="page-title">Proiecte Personale</h1>
+
+  <div class="projects-grid">
+    <div class="project-card" *ngFor="let p of projectList">
+
+      <div class="card-header">
+        <h2>{{ p.name }}</h2>
+      </div>
+
+      <p class="description">{{ p.description }}</p>
+
+      <div class="tech-stack">
+        <span class="tech-tag">{{ p.tech }}</span>
+      </div>
+
+      <a [href]="p.link" target="_blank" class="btn-view">Vezi Codul / Demo</a>
+    </div>
+  </div>
+</div>
