@@ -24,6 +24,9 @@ jobs:
       - name: Build Angular App
         run: npm run build -- --configuration production --base-href "https://Oti404.github.io/portofoliu-personal/"
 
+      - name: Copy index.html to 404.html
+        run: cp dist/portofoliu-personal/browser/index.html dist/portofoliu-personal/browser/404.html
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
