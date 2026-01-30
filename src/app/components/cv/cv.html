@@ -1,17 +1,14 @@
 <div class="container">
   <h1 class="page-title">Experiență Profesională</h1>
 
+  <div class="download-container" *ngIf="personal.cvPdf">
+    <a [href]="personal.cvPdf" download="CV_Otniel_Iacob.pdf" class="btn-download">
+      <span class="icon">⬇</span> Descarcă CV-ul (PDF)
+    </a>
+  </div>
+
   <div class="timeline">
     <div class="job-card" *ngFor="let job of experience">
-
-      <div class="job-header">
-        <h2 class="role">{{ job.role }}</h2>
-        <span class="period">{{ job.period }}</span>
-      </div>
-
-      <h3 class="company">{{ job.company }}</h3>
-      <p class="description">{{ job.description }}</p>
-
-    </div>
+        </div>
   </div>
 </div>

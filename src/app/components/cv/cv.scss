@@ -1,3 +1,32 @@
+.download-container {
+  text-align: center;
+  margin-bottom: 3rem; /* Spațiu până la lista de joburi */
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #333; /* Gri închis elegant */
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+  .icon {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background-color: #d32f2f; /* Roșu la hover */
+    transform: translateY(-3px); /* Se ridică puțin */
+    box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3); /* Umbră roșiatică */
+  }
+}
 .container {
   max-width: 800px;
   margin: 0 auto;

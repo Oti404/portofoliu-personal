@@ -13,6 +13,7 @@ export class DataService {
       role: 'Student',
       description: 'Salut! Sunt un dezvoltator pasionat de Angular, dornic să construiesc aplicații web performante.',
       photo:'images/profile-picture.jpg',
+      cvPdf: 'documents/cv-otniel.pdf',
       location: 'România',
       email: 'otniel.contact@gmail.com',
       linkedin: 'https://www.linkedin.com/in/otniel-iacob',

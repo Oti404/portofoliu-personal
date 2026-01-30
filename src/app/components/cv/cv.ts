@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'; // 1. Importăm inject
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data';
 
@@ -10,9 +10,9 @@ import { DataService } from '../../services/data';
   styleUrl: './cv.scss',
 })
 export class Cv {
-  // 2. "Activăm" serviciul folosind inject()
   private service = inject(DataService);
 
-  // 3. Luăm datele din interiorul obiectului 'data'
+  // Avem nevoie și de datele personale pentru link-ul de PDF
+  public personal = this.service.data.profile;
   public experience = this.service.data.experience;
 }
