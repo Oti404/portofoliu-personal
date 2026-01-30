@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Navbar } from './components/navbar/navbar'; // <--- Importăm componenta nouă
+import { Navbar } from './components/navbar/navbar';
+// Importăm componentele direct aici
+import { Home } from './components/home/home';
+import { Projects } from './components/projects/projects';
+import { Cv } from './components/cv/cv';
+import { Hobbies } from './components/hobbies/hobbies';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar], // <--- O declarăm aici
+  // Le adăugăm în lista de imports
+  imports: [Navbar, Home, Projects, Cv, Hobbies],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

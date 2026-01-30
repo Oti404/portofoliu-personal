@@ -1,12 +1,25 @@
+/* Reset global */
 :host {
   display: block;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
+}
+
+/* Aici e magia pentru scroll fin */
+html {
+  scroll-behavior: smooth;
 }
 
 .content {
-  padding-top: 2rem;
-  min-height: 90vh;
   background-color: #f9f9f9;
+}
+
+/* Stil pentru fiecare secțiune */
+section {
+  /* Asta face ca atunci când dai click, să se oprească puțin mai jos,
+     ca să nu fie acoperit titlul de Navbar-ul fix */
+  scroll-margin-top: 80px;
+
+  /* Opțional: un pic de spațiu între ele */
+  padding-bottom: 4rem;
+  min-height: 80vh; /* Fiecare secțiune să fie destul de înaltă */
 }

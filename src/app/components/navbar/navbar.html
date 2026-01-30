@@ -1,14 +1,22 @@
 <header class="navbar">
   <div class="logo">
-    <a routerLink="/home">Portofoliu</a>
+    <a (click)="scrollTo('home')" style="cursor: pointer">Portofoliu</a>
   </div>
 
   <nav>
     <ul class="nav-links">
-      <li><a routerLink="/home" routerLinkActive="active">Acasă</a></li>
-      <li><a routerLink="/cv" routerLinkActive="active">CV</a></li>
-      <li><a routerLink="/projects" routerLinkActive="active">Proiecte</a></li>
-      <li><a routerLink="/hobbies" routerLinkActive="active">Hobby-uri</a></li>
+      <li>
+        <a (click)="scrollTo('home')" [class.active]="activeSection === 'home'">Acasă</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('projects')" [class.active]="activeSection === 'projects'">Proiecte</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('cv')" [class.active]="activeSection === 'cv'">CV</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('hobbies')" [class.active]="activeSection === 'hobbies'">Hobby-uri</a>
+      </li>
     </ul>
   </nav>
 </header>
