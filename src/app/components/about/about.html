@@ -1,0 +1,40 @@
+<section class="about-section" id="despre-mine">
+  <div class="container">
+
+    <div class="profile-container">
+      <div class="profile-glow"></div>
+      <img [src]="profile.photo" alt="Profile Picture" class="profile-img">
+    </div>
+
+    <div class="details-container">
+      <h2 class="section-title">Despre <span class="highlight">Mine</span></h2>
+
+      <p class="intro-text">
+        {{ profile.description }}
+      </p>
+
+      <div class="data-blocks-list">
+        <ng-container *ngFor="let item of details">
+
+          <a *ngIf="item.type === 'link' || item.type === 'info'"
+             [href]="item.value"
+             [target]="item.type === 'link' ? '_blank' : '_self'"
+             class="data-block"
+             [class.info-block]="item.type === 'info' && !item.value.startsWith('mailto')">
+
+            <div class="icon-box">{{ getIcon(item.icon) }}</div>
+
+            <div class="text-box">
+              <span class="label">{{ item.label }}</span>
+              <span class="value">{{ item.displayValue }}</span>
+            </div>
+
+            <div class="arrow-icon" *ngIf="item.type === 'link'">↗</div>
+          </a>
+
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</section>

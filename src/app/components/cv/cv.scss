@@ -1,18 +1,58 @@
+/* Variabile pentru consistență (opțional, dar recomandat) */
+$primary-color: #333;
+$accent-color: #d32f2f;
+$link-color: #0077b5;
+$bg-card: #ffffff;
+$text-muted: #666;
+
+/* Containerul principal al CV-ului */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem; /* Spațiu generos pe Desktop */
+  font-family: 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+
+  /* RESPONSIVE: Pe telefon reducem padding-ul ca să folosim tot ecranul */
+  @media (max-width: 768px) {
+    padding: 1rem;
+    width: 100%;
+  }
+}
+
+/* Titlul Paginii (Curriculum Vitae) */
+.page-title {
+  text-align: center;
+  color: $primary-color;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid $accent-color;
+  display: inline-block;
+  padding-bottom: 10px;
+
+  /* Centrare perfectă dacă e pus într-un container block */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+}
+
+/* Butonul de Download */
 .download-container {
   text-align: center;
-  margin-bottom: 3rem; /* Spațiu până la lista de joburi */
+  margin-bottom: 3rem;
 }
 
 .btn-download {
   display: inline-flex;
   align-items: center;
+  justify-content: center; /* Centrare text */
   gap: 10px;
-  background-color: #333; /* Gri închis elegant */
+  background-color: $primary-color;
   color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
+  padding: 12px 30px; /* Buton puțin mai lat pentru atingere ușoară */
+  border-radius: 50px; /* Mai rotund = mai modern */
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -22,79 +62,95 @@
   }
 
   &:hover {
-    background-color: #d32f2f; /* Roșu la hover */
-    transform: translateY(-3px); /* Se ridică puțin */
-    box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3); /* Umbră roșiatică */
+    background-color: $accent-color;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3);
+  }
+
+  &:active {
+    transform: translateY(-1px); /* Efect de apăsare */
   }
 }
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
-}
 
-.page-title {
-  text-align: center;
-  color: #333;
-  margin-bottom: 3rem;
-  border-bottom: 2px solid #d32f2f;
-  display: inline-block;
-  padding-bottom: 10px;
-}
-
+/* Cardul de Job */
 .job-card {
-  background: white;
+  background: $bg-card;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-left: 5px solid #d32f2f;
-  transition: transform 0.2s;
+  border-radius: 12px; /* Colțuri puțin mai rotunjite */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Umbră mai fină, mai modernă */
+  border-left: 5px solid $accent-color;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  &:hover {
-    transform: translateX(10px);
+  /* Efect doar pe Desktop */
+  @media (min-width: 769px) {
+    &:hover {
+      transform: translateX(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
   }
 }
 
+/* Header-ul Jobului (Titlu + Perioada) */
 .job-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Aliniem sus în caz că textul e lung */
+  gap: 15px; /* Spațiu ca să nu se lipească */
   margin-bottom: 0.5rem;
+
+  /* RESPONSIVE CRITIC: Pe telefon le punem una sub alta */
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    .period {
+      font-size: 0.8rem; /* Puțin mai mic pe mobil */
+      align-self: flex-start; /* Aliniat la stânga pe mobil */
+    }
+  }
 
   .role {
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #222;
+    font-weight: 700;
+    line-height: 1.3;
   }
 
   .period {
-    background: #eee;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    background: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: #555;
+    white-space: nowrap; /* Previne ruperea datei pe rânduri ciudate */
+    flex-shrink: 0; /* Împiedică turtirea datei */
   }
 }
 
 .company {
   margin: 0;
-  color: #0077b5;
-  font-weight: 500;
+  color: $link-color;
+  font-weight: 600;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
+  display: block;
 }
 
 .description {
-  color: #666;
-  line-height: 1.6;
+  color: $text-muted;
+  line-height: 1.7; /* Mai aerisit pentru citit ușor */
+  font-size: 0.95rem;
 }
 
 .id-tag {
   display: block;
-  margin-top: 1rem;
-  color: #999;
+  margin-top: 1.5rem;
+  color: #aaa;
   font-size: 0.75rem;
   font-style: italic;
+  text-align: right; /* ID-ul arată mai bine discret în dreapta */
 }

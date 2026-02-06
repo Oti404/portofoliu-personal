@@ -1,18 +1,39 @@
-<div class="hero-container">
-  <div class="profile-card">
+<section class="hero-section">
 
-    <div class="avatar-container" *ngIf="info.photo">
-      <img [src]="info.photo" alt="Profile Picture" class="avatar">
-    </div>
+  <div class="hero-text">
+    <span class="badge">Full Stack Developer</span>
+    <h1>Building the <span class="highlight">Future</span> with Code</h1>
+    <h2>Otniel Iacob</h2>
 
-    <h1 class="name">{{ info.firstName }} {{ info.lastName }}</h1>
-    <h2 class="role">{{ info.role }}</h2>
-    <p class="description">{{ info.about }}</p>
+    <p class="description">
+      Transform idei complexe în aplicații web rapide și moderne.
+      Specializat în Angular și soluții scalabile.
+    </p>
 
-    <div class="social-links">
-      <a *ngIf="info.github" [href]="info.github" target="_blank" class="btn btn-github">GitHub</a>
-      <a *ngIf="info.linkedin" [href]="info.linkedin" target="_blank" class="btn btn-linkedin">LinkedIn</a>
-      <a href="mailto:{{ info.email }}" class="btn btn-email">Contact</a>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-neon">Contactează-mă</a>
     </div>
   </div>
-</div>
+
+  <div class="hero-visual">
+    <div class="orbit-ring ring-1"></div>
+    <div class="orbit-ring ring-2"></div>
+
+    <div class="tech-icon icon-angular">Angular</div>
+    <div class="tech-icon icon-ts">TypeScript</div>
+    <div class="tech-icon icon-css">SCSS</div>
+    <div class="tech-icon icon-git">Git</div>
+
+    <div class="avatar-center">
+  <img
+    ngSrc="assets/tech-core.webp"
+    width="350"
+    height="350"
+    alt="Otniel Iacob"
+    class="main-tech-img"
+    priority
+  >
+  </div>
+  </div>
+
+</section>

@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data';
@@ -11,12 +10,11 @@ import { DataService } from '../../services/data';
   styleUrl: './cv.scss',
 })
 export class Cv {
-  private service = inject(DataService);
+  private dataService = inject(DataService);
 
-  // Avem nevoie și de datele personale pentru link-ul de PDF
-  public experience = this.service.data.experience;
-  public profile = this.service.data.profile;
+  public personal = this.dataService.data.profile;
+  public experience = this.dataService.data.experience;
+
+
+
 }
-
-
-

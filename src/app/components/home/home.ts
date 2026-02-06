@@ -1,24 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Asigură-te că numele fișierului e corect (uneori e data.service.ts)
-import { DataService } from '../../services/data';
-
+import { NgOptimizedImage } from '@angular/common'; // <--- 1. Importă asta sus
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage], // <--- 2. Adaugă aici
   templateUrl: './home.html',
-  styleUrls: ['./home.scss']
+  styleUrl: './home.scss'
 })
-export class Home implements OnInit {
-
-  public info: any; // Aici vom stoca datele pentru a le afișa în HTML
-
-  // Aici "cerem" serviciul de la Angular
-  constructor(private dataService: DataService) {}
-
-  ngOnInit() {
-    // Când componenta pornește, luăm datele din serviciu
-    this.info = this.dataService.data.profile;
-  }
-}
+export class Home {}

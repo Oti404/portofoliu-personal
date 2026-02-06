@@ -4,6 +4,7 @@ import { Home } from './components/home/home';
 import { Cv } from './components/cv/cv';
 import { Projects } from './components/projects/projects';
 import { Hobbies } from './components/hobbies/hobbies';
+import { AcademicJourneyComponent } from './components/academic-journey/academic-journey';
 // ...existing code...
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'cv', component: Cv },
   { path: 'projects', component: Projects },
   { path: 'hobbies', component: Hobbies },
+  { path: 'academic-journey', component: AcademicJourneyComponent },
   { path: '**', redirectTo: '/home' }
 ];

@@ -1,0 +1,64 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <div class="header-left">
+        <span class="modal-code">{{ subject.code }}</span>
+        <h2>{{ subject.name }}</h2>
+      </div>
+      <button class="close-btn" (click)="onClose()">✖</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="info-row">
+        <div class="info-item">
+          <span class="label">Status:</span>
+          <span class="value" [class.passed]="subject.passed">
+            {{ subject.passed ? 'PROMOVAT' : 'ÎN CURS / RESTANȚĂ' }}
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="label">Credite:</span>
+          <span class="value">{{ subject.credits }} ECTS</span>
+        </div>
+      </div>
+
+      <hr class="neon-divider">
+
+      <div class="details-section">
+        <h3>📂 Arhivă Teme & Proiecte</h3>
+        <p class="placeholder-text">
+          System Log: Accesare arhivă digitală pentru {{ subject.name }}...
+        </p>
+
+        <ul class="project-list">
+
+          <li *ngIf="subject.docPath">
+            <div class="list-item-left">
+              <span class="icon">📜</span>
+              <span>Fișa Disciplinei (Oficial)</span>
+            </div>
+            <a [href]="'/documents/fisele-disciplinelor/' + subject.docPath"
+               target="_blank"
+               class="small-btn">
+               DESCHIDE PDF
+            </a>
+          </li>
+
+          <li>
+            <div class="list-item-left">
+              <span class="icon">💻</span>
+              <span>Repository Cod Sursă</span>
+            </div>
+            <button class="small-btn">GIT</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="action-btn">DOWNLOAD_ARCHIVE.ZIP</button>
+    </div>
+
+  </div>
+</div>

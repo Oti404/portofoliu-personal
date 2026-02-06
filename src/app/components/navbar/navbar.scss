@@ -1,64 +1,224 @@
-/* Stiluri strict pentru Navbar */
+/* --- VARIABILE --- */
+$neon-blue: #00f3ff;
+$neon-red: #d32f2f;
+$bg-glass: rgba(10, 10, 10, 0.95); /* Aproape opac, ca să se citească bine */
+$text-white: #ffffff;
+
+/* --- CONTAINERUL PRINCIPAL (Bara de sus) --- */
+:host {
+  display: block;
+  width: 100%;
+  position: fixed; /* Rămâne lipit sus */
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
 .navbar {
-  background-color: #1a1a1a;
-  padding: 1rem 2rem;
+  width: 100%;
+  height: 70px; /* Înălțime fixă */
+  background: $bg-glass;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrăm conținutul */
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px; /* Să nu fie prea lat pe ecrane mari */
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
-.logo a {
-  color: white;
-  text-decoration: none;
+/* --- LOGO --- */
+.logo {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 800;
+  color: $text-white;
   letter-spacing: 1px;
+  cursor: pointer;
+  z-index: 1002; /* Logo-ul stă mereu peste orice */
 
-  &:hover {
-    color: #d32f2f;
+  .dot {
+    color: $neon-blue;
+    font-size: 2rem;
+    line-height: 0;
   }
 }
 
+/* --- LINK-URILE (Desktop) --- */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 30px;
   margin: 0;
   padding: 0;
 
   li a {
     text-decoration: none;
     color: #ccc;
-    font-weight: 500;
-    font-size: 1.1rem;
-    padding-bottom: 5px;
-    transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s;
 
-    &:hover {
-      color: white;
-      border-bottom-color: white;
+    /* Linia de sub link la hover */
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: $neon-red;
+      transition: width 0.3s;
     }
 
-    &.active {
-      color: #d32f2f;
-      border-bottom-color: #d32f2f;
+    &:hover {
+      color: $text-white;
+      &::after { width: 100%; }
     }
   }
 }
 
-/* Adaptare mobil */
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    gap: 1rem;
+/* --- HAMBURGER BUTTON (Ascuns pe Desktop) --- */
+.hamburger {
+  display: none; /* Implicit nu se vede */
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1002; /* Peste meniul deschis */
+
+  span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: $text-white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
+}
+
+/* =========================================
+   RESPONSIVE (Aici reparăm problema ta!)
+   ========================================= */
+@media (max-width: 768px) {
+  /* 1. Arătăm butonul Hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Animația butonului când e deschis */
+  .hamburger.active {
+    span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); background: $neon-red; }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); background: $neon-red; }
+  }
+
+  /* 2. Ascundem link-urile și le facem meniu lateral */
   .nav-links {
-    gap: 1rem;
-    font-size: 0.9rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%; /* Pe mobil acoperim tot ecranul sau 80% */
+    max-width: 300px;
+    background: #000000; /* Fundal negru solid */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    /* Ascuns în dreapta */
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.8);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+    &.open {
+      transform: translateX(0); /* Intră în ecran */
+    }
+
+    li a {
+      font-size: 1.5rem; /* Text mare pe mobil */
+      color: $text-white;
+    }
+  }
+}
+
+/* =========================================
+   RESPONSIVE (MOBIL) - FINISAJE PREMIUM
+   ========================================= */
+@media (max-width: 768px) {
+  /* 1. Arătăm butonul Hamburger */
+  .hamburger {
+    display: flex;
+    z-index: 10001; /* Z-index uriaș să fie peste meniu */
+  }
+
+  /* Animația butonului (X) */
+  .hamburger.active {
+    span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); background: $neon-red; }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); background: $neon-red; }
+  }
+
+  /* 2. Meniul Lateral (Sertarul) */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+
+    /* MODIFICARE: Lățime fixă, elegantă, nu cât tot ecranul */
+    width: 260px;
+
+    /* Design "Glassmorphism" Dark */
+    background: rgba(10, 10, 10, 0.95); /* Aproape negru, foarte puțin transparent */
+    backdrop-filter: blur(15px); /* Blur puternic în spate */
+    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Linie fină în stânga */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.8); /* Umbră adâncă */
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px; /* Spațiu mai mic între link-uri */
+
+    /* Tranziția de intrare */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Mișcare fluidă */
+    z-index: 10000;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    /* Stilul Textului pe Mobil */
+    li a {
+      font-size: 1.1rem; /* Text mai mic, dar lizibil */
+      font-weight: 500;
+      text-transform: uppercase; /* Litere mari = Premium */
+      letter-spacing: 2px; /* Spațiu între litere */
+      color: #ccc;
+      transition: all 0.3s ease;
+
+      /* Hover pe mobil */
+      &:hover, &.active {
+        color: $text-white;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        transform: scale(1.1); /* Se mărește puțin */
+      }
+
+      /* Scoatem linia de jos pe mobil, arată mai curat fără */
+      &::after {
+        display: none;
+      }
+    }
   }
 }

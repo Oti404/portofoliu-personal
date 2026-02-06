@@ -1,92 +1,282 @@
-/* Adaugă asta în interiorul .profile-card sau la început */
+/* --- VARIABILE LOCALE (Ca să fie ușor de schimbat culorile) --- */
+$neon-blue: #00f3ff;
+$text-white: #ffffff;
+$text-gray: #aaa;
+$bg-dark: transparent; /* Sau #050505 dacă vrei fundal solid */
 
-.avatar-container {
+/* =========================================
+   HERO SECTION - LAYOUT PRINCIPAL
+   ========================================= */
+.hero-section {
   display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem; /* Spațiu sub poză */
-}
-
-.avatar {
-  width: 150px;       /* Mărimea pozei */
-  height: 150px;
-  border-radius: 50%; /* O face perfect rotundă */
-  object-fit: cover;  /* Se asigură că poza nu e turtită dacă nu e pătrată */
-  border: 4px solid #fff; /* Ramă albă */
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Umbră ca să iasă în relief */
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05) rotate(2deg); /* Un mic efect simpatic la mouse over */
-  }
-}
-.hero-container {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 80vh; /* Ocupă 80% din înălțimea ecranului */
-  background-color: #f5f5f5; /* Un gri foarte deschis, elegant */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: space-between;
+  min-height: 100vh; /* Ocupă tot ecranul */
+  padding: 0 10%;
+  position: relative;
+  overflow: hidden; /* CRITIC: Ascunde cercurile care ies din ecran */
+  background: $bg-dark;
+
+  /* RESPONSIVE: TABLETĂ ȘI MOBIL */
+  @media (max-width: 992px) {
+    flex-direction: column-reverse; /* Textul jos, Avatarul sus */
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px 50px 20px; /* Mai mult loc sus pentru navbar */
+    gap: 40px;
+  }
 }
 
-.profile-card {
-  text-align: center;
-  background: white;
-  padding: 3rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Umbră fină */
-  max-width: 600px;
-  width: 90%;
+/* =========================================
+   PARTEA STÂNGĂ (TEXT)
+   ========================================= */
+.hero-text {
+  flex: 1;
+  z-index: 2; /* Peste cercurile din fundal */
 
-  .name {
+  .badge {
+    display: inline-block;
+    background: rgba(0, 243, 255, 0.1);
+    color: $neon-blue;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+  }
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 900;
     margin: 0;
-    color: #333;
-    font-size: 2.5rem;
-  }
+    line-height: 1.1;
+    color: $text-white;
 
-  .role {
-    margin-top: 0.5rem;
-    color: #d32f2f; /* Roșu Angular */
-    font-weight: 500;
-  }
+    .highlight {
+      background: linear-gradient(to right, #fff, $neon-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    }
 
-  .description {
-    color: #666;
-    line-height: 1.6;
-    margin: 1.5rem 0;
-  }
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
-
-  .btn {
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: transform 0.2s, opacity 0.2s;
-
-    &:hover {
-      transform: translateY(-2px); /* Efect de ridicare la mouse over */
-      opacity: 0.9;
+    /* Text mai mic pe telefon */
+    @media (max-width: 600px) {
+      font-size: 2.5rem;
     }
   }
 
-  .btn-github {
-    background-color: #333;
-    color: white;
+  h2 {
+    font-size: 1.8rem;
+    color: #888;
+    margin-top: 15px;
+    font-weight: 400;
+
+    @media (max-width: 600px) {
+      font-size: 1.4rem;
+    }
   }
 
-  .btn-linkedin {
-    background-color: #0077b5;
-    color: white;
+  .description {
+    color: $text-gray;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 550px;
+    margin: 30px 0;
+    border-left: 3px solid $neon-blue;
+    padding-left: 20px;
+
+    /* Pe mobil scoatem linia din stânga că textul e centrat */
+    @media (max-width: 992px) {
+      margin: 20px auto;
+      border-left: none;
+      padding-left: 0;
+    }
   }
 
-  .btn-email {
-    background-color: #d32f2f;
-    color: white;
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 992px) {
+      justify-content: center;
+    }
+  }
+}
+
+/* =========================================
+   PARTEA DREAPTĂ (VIZUAL & ANIMAȚII)
+   ========================================= */
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 600px;
+  width: 100%;
+
+  /* Pe mobil reducem înălțimea ca să nu fie spațiu gol imens */
+  @media (max-width: 992px) {
+    height: 400px;
+  }
+}
+
+/* SPOTLIGHT (Lumina difuză din spate) */
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(50px);
+  animation: pulse-glow 4s infinite alternate;
+}
+
+/* --- INELELE ORBITALE (RINGS) --- */
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.ring-1 {
+  width: 450px;
+  height: 450px;
+  border-top-color: $neon-blue; /* Doar o bucată colorată */
+  animation: spin 15s linear infinite;
+
+  /* Pe mobil le facem mai mici să intre în ecran */
+  @media (max-width: 600px) { width: 300px; height: 300px; }
+}
+
+.ring-2 {
+  width: 650px;
+  height: 650px;
+  border-bottom-color: rgba(0, 243, 255, 0.5);
+  animation: spin 25s linear infinite reverse;
+  opacity: 0.6;
+
+  @media (max-width: 600px) { width: 450px; height: 450px; }
+}
+
+/* --- AVATARUL CENTRAL --- */
+.avatar-center {
+  position: relative;
+  z-index: 5; /* Peste inele, sub iconițe */
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 992px) { width: 280px; height: 280px; }
+  @media (max-width: 600px) { width: 220px; height: 220px; }
+}
+
+.main-tech-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  animation: pulse-core 4s infinite ease-in-out;
+}
+
+/* --- ICONIȚELE PLUTITOARE (Tech Stack) --- */
+.tech-icon {
+  position: absolute;
+  background: #0a0a0a;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: float 6s ease-in-out infinite;
+  white-space: nowrap;
+
+  /* Poziționare inteligentă */
+  &.icon-angular { color: #dd0031; border-color: rgba(221, 0, 49, 0.4); top: 10%; right: 10%; animation-delay: 0s; }
+  &.icon-ts { color: #3178c6; border-color: rgba(49, 120, 198, 0.4); bottom: 20%; right: 0%; animation-delay: 1s; }
+  &.icon-css { color: #00f3ff; border-color: rgba(0, 243, 255, 0.4); top: 20%; left: 5%; animation-delay: 2s; }
+  &.icon-git { color: #f05032; border-color: rgba(240, 80, 50, 0.4); bottom: 10%; left: 20%; animation-delay: 1.5s; }
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px currentColor;
+    transform: scale(1.1);
+    cursor: default;
+  }
+
+  /* Pe mobil ascundem iconițele sau le apropiem, ca să nu lățească pagina */
+  @media (max-width: 600px) {
+    transform: scale(0.8);
+    /* Le aducem mai aproape de centru */
+    &.icon-angular { top: 0; right: 0; }
+    &.icon-ts { bottom: 0; right: 0; }
+    &.icon-css { top: 0; left: 0; }
+    &.icon-git { bottom: 0; left: 0; }
+  }
+}
+
+/* --- DEFINIREA ANIMAȚIILOR --- */
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@keyframes pulse-core {
+  0% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 243, 255, 0.2); }
+  50% { transform: scale(1.03); box-shadow: 0 0 70px rgba(0, 243, 255, 0.5); }
+  100% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 243, 255, 0.2); }
+}
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* SCHIMBARE AICI: */
+  /* min-height: 100vh;  <-- ȘTERGE SAU COMENTEAZĂ ASTA */
+  min-height: auto; /* Lasă secțiunea să fie exact cât conținutul */
+
+  /* Ajustăm padding-ul ca să arate bine */
+  /* 150px sus (pt a nu intra sub navbar), 50px jos (să fie aproape de About) */
+  padding: 150px 10% 50px 10%;
+
+  position: relative;
+  overflow: hidden;
+  /* background: transparent; */
+
+  @media (max-width: 900px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+    padding-top: 120px;
+    gap: 50px;
+    padding-bottom: 50px; /* Important pe mobil */
   }
 }

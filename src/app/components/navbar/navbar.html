@@ -1,22 +1,22 @@
-<header class="navbar">
-  <div class="logo">
-    <a (click)="scrollTo('home')" style="cursor: pointer">Portofoliu</a>
-  </div>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      PORTFOLIO<span class="dot">.</span>
+    </div>
 
-  <nav>
-    <ul class="nav-links">
-      <li>
-        <a (click)="scrollTo('home')" [class.active]="activeSection === 'home'">Acasă</a>
-      </li>
-      <li>
-        <a (click)="scrollTo('projects')" [class.active]="activeSection === 'projects'">Proiecte</a>
-      </li>
-      <li>
-        <a (click)="scrollTo('cv')" [class.active]="activeSection === 'cv'">CV</a>
-      </li>
-      <li>
-        <a (click)="scrollTo('hobbies')" [class.active]="activeSection === 'hobbies'">Hobby-uri</a>
-      </li>
+    <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <ul class="nav-links" [class.open]="isMenuOpen">
+      <li><a (click)="scrollToSection('home')">HOME</a></li>
+      <li><a (click)="scrollToSection('despre-mine')">ABOUT</a></li>
+      <li><a (click)="scrollToSection('proiecte')">PROJECTS</a></li>
+      <li><a (click)="scrollToSection('academic-journey')">ACADEMIC JOURNEY</a></li>
+      <li><a (click)="scrollToSection('cv')">RESUME</a></li>
+      <li><a (click)="scrollToSection('hobby')">HOBBIES</a></li>
     </ul>
-  </nav>
-</header>
+  </div>
+</nav>
