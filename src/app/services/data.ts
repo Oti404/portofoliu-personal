@@ -21,59 +21,6 @@ export class DataService {
       linkedin: 'https://linkedin.com/in/otniel-iacob',
       github: 'https://github.com/Oti404'
     },
-    // Lista de Joburi / Educație
-    experience: [
-      {
-        id: 1, // ID numeric (Long style)
-        company: 'Nume Companie / Facultate',
-        role: 'Web Developer',
-        period: '2023 - Prezent',
-        description: 'Dezvoltare interfețe user-friendly folosind Angular și SCSS.'
-      },
-      {
-        id: 2,
-        company: 'Freelance',
-        role: 'Junior Dev',
-        period: '2022 - 2023',
-        description: 'Proiecte mici pentru clienți locali.'
-      }
-    ],
-
-    // Lista de Proiecte
-    projects: [
-      {
-        id: 101,
-        name: 'Portofoliu Personal',
-        tech: 'Angular 17, GitHub Pages',
-        description: 'Site-ul pe care îl vizitezi chiar acum, cu CI/CD automatizat.',
-        link: '#'
-      },{
-        id: 102,
-        name: 'Portofoliu Personal2',
-        tech: 'Angular 17, GitHub Pages',
-        description: 'Site-ul pe care îl vizitezi chiar acum, cu CI/CD automatizat.',
-        link: '#'
-      },{
-        id: 103,
-        name: 'Portofoliu Personal3',
-        tech: 'Angular 17, GitHub Pages',
-        description: 'Site-ul pe care îl vizitezi chiar acum, cu CI/CD automatizat.',
-        link: '#'
-      },{
-        id: 104,
-        name: 'Portofoliu Personal4',
-        tech: 'Angular 17, GitHub Pages',
-        description: 'Site-ul pe care îl vizitezi chiar acum, cu CI/CD automatizat.',
-        link: '#'
-      },
-      {
-        id: 105,
-        name: 'Weather App',
-        tech: 'API Integration, CSS',
-        description: 'Aplicație care afișează vremea în timp real.',
-        link: '#'
-      }
-    ],
 
     hobbies:[
       {

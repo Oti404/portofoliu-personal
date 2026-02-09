@@ -236,3 +236,35 @@ html {
   scroll-behavior: smooth; /* Activează scroll fin global */
   scroll-padding-top: 100px; /* Când dai click, se oprește cu 100px mai sus */
 }
+.profile-img {
+  /* Dimensiuni standard */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  /* --- FILTRU CINEMATIC (Natural, dar dramatic) --- */
+  /* saturate(90%) - Culori naturale, dar puțin mai temperate */
+  /* contrast(110%) - Puțin mai mult dramatism */
+  /* brightness(95%) - O idee mai întunecată ca să stea bine pe fundal negru */
+  filter: saturate(0.9) contrast(1.1) brightness(0.95);
+
+  /* --- BORDURĂ DE INTEGRARE --- */
+  /* Un inel alb subțire pentru definiție */
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  /* Glow-ul NEON care te leagă de site */
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.35);
+
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  z-index: 2;
+
+  /* --- HOVER STATE --- */
+  &:hover {
+    /* La hover, o facem puțin mai luminoasă */
+    filter: saturate(1) contrast(1.15) brightness(1.05);
+    /* Glow-ul devine mai intens */
+    box-shadow: 0 0 50px rgba(0, 243, 255, 0.6);
+    transform: scale(1.03);
+  }
+}

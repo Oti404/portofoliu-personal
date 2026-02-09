@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { Navbar } from './components/navbar/navbar';
 import { Home } from './components/home/home';
 import { Projects } from './components/projects/projects';
-import { Cv } from './components/cv/cv';
 import { Hobbies } from './components/hobbies/hobbies';
+import { ExperienceComponent } from './components/experience/experience';
 import { NgOptimizedImage } from '@angular/common';
 import { About } from './components/about/about';
 import { AcademicJourneyComponent } from './components/academic-journey/academic-journey';
+import { Footer } from './components/footer/footer';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Navbar, Home, Projects, Cv, Hobbies, About, AcademicJourneyComponent],
+  imports: [Navbar, Home, Projects,ExperienceComponent, Footer , About],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

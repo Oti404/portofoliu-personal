@@ -1,19 +1,31 @@
-/* --- CONTAINER PRINCIPAL --- */
+/* --- VARIABILE GLOBALE --- */
+:host {
+  --neon-cyan: #00f3ff;
+  --neon-magenta: #ff00ff;
+  --bg-dark: #050a10;
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* --- BACKGROUND CU EFECT DE GRILĂ (CYBER GRID) --- */
 .about-section {
-  padding: 100px 0;
+  padding-top: 40px;
+  padding-bottom: 100px;
   position: relative;
   overflow: hidden;
+  background-color: var(--bg-dark);
 
-  /* Un glow foarte subtil în spate-dreapta pentru atmosferă */
-  &::before {
+  /* Grila Cyberpunk din fundal */
+  background-image:
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+
+  /* Vigneta pentru a întuneca marginile */
+  &::after {
     content: '';
     position: absolute;
-    right: -10%;
-    top: 20%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 243, 255, 0.03) 0%, transparent 70%);
-    z-index: -1;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 40%, var(--bg-dark) 90%);
     pointer-events: none;
   }
 }
@@ -22,209 +34,287 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 30px;
-
-  /* LAYOUT FLEX: Stânga (Poză) - Dreapta (Detalii) */
   display: flex;
-  align-items: center; /* Centrare verticală */
+  align-items: center;
   justify-content: center;
-  gap: 80px; /* Spațiu generos între ele */
+  gap: 100px;
+  position: relative;
+  z-index: 2;
 
-  /* Pe Mobil le punem una sub alta */
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
-    gap: 50px;
+    gap: 60px;
     text-align: center;
   }
 }
 
-/* --- PARTEA STÂNGĂ: POZA DE PROFIL (CERCUL ROȘU DIN DESEN) --- */
+/* --- POZA DE PROFIL: REACTOR CORE HUD --- */
 .profile-container {
   position: relative;
-  width: 320px;
-  height: 320px;
-  flex-shrink: 0; /* Să nu se turtească */
+  width: 340px;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media (max-width: 900px) {
-    width: 250px;
-    height: 250px;
+  @media (max-width: 900px) { width: 260px; height: 260px; }
+}
+
+/* Inelul Rotativ Exterior (Dashed) */
+.profile-glow {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border: 2px dashed rgba(0, 243, 255, 0.3);
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+  z-index: 0;
+
+  /* Inelul Interior (Solid) */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(255, 0, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: spin-reverse 10s linear infinite;
   }
 }
 
 .profile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Umple cercul perfect fără să deformeze poza */
-  border-radius: 50%; /* Cerc perfect */
-
-  /* Bordură Neon și Umbră */
-  border: 2px solid rgba(0, 243, 255, 0.3);
-  box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
-
+  width: 85%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 243, 255, 0.5);
+  box-shadow: 0 0 40px rgba(0, 243, 255, 0.15);
   position: relative;
   z-index: 2;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 50px rgba(0, 243, 255, 0.4);
-    border-color: var(--neon-blue);
+    transform: scale(1.05);
+    border-color: var(--neon-magenta);
+    box-shadow: 0 0 60px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(255, 0, 255, 0.2);
   }
 }
 
-/* Glow-ul din spatele pozei (Reactor Effect) */
-.profile-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--neon-blue);
-  opacity: 0.1;
-  filter: blur(40px);
-  z-index: 1;
-  animation: pulse 4s infinite ease-in-out;
-}
+/* --- ANIMATIONS --- */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
 
-@keyframes pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.1; }
-  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.2; }
-}
-
-/* --- PARTEA DREAPTĂ: DETALII (LINIILE PORTOCALII DIN DESEN) --- */
+/* --- DETALII DREAPTA --- */
 .details-container {
-  flex: 1; /* Ocupă restul spațiului */
+  flex: 1;
   max-width: 600px;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
   font-weight: 800;
-  margin-bottom: 20px;
   color: #fff;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
 
   .highlight {
-    color: var(--neon-blue);
-    text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+    color: var(--neon-cyan);
+    text-shadow: 0 0 20px var(--neon-cyan);
+    position: relative;
+    display: inline-block;
+
+    /* Glitch effect la hover pe text */
+    &:hover {
+      animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+      color: var(--neon-magenta);
+    }
   }
 }
 
-.intro-text {
-  color: #aaa;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-bottom: 40px;
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
 }
 
-/* --- DATA BLOCKS (LINIILE DE CONTACT) --- */
+.intro-text {
+  font-family: 'Segoe UI', sans-serif;
+  color: #b0c4de;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 45px;
+  border-left: 3px solid rgba(0, 243, 255, 0.3);
+  padding-left: 20px;
+}
+
+/* --- DATA BLOCKS: HOLOGRAPHIC CARDS --- */
 .data-blocks-list {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Spațiu între linii */
+  gap: 18px;
 }
 
 .data-block {
   display: flex;
   align-items: center;
-  padding: 15px 25px;
+  padding: 18px 25px;
 
-  /* Stil Cyberpunk: Fundal închis semitransparent */
-  background: rgba(20, 20, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  /* Efect de sticlă fumurie */
+  background: rgba(10, 20, 30, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px; /* Colțuri mai tehnice, mai puțin rotunjite */
 
-  text-decoration: none; /* Scoatem linia de link */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  transition: all 0.4s ease;
 
-  /* Iconița din stânga */
+  /* Iconița */
   .icon-box {
-    font-size: 1.4rem;
-    margin-right: 20px;
-    color: #666; /* Gri inițial */
-    transition: 0.3s;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    color: #888;
+    margin-right: 20px;
+    transition: 0.3s;
   }
 
-  /* Textul (Label + Value) */
+  /* Textul */
   .text-box {
     flex: 1;
     display: flex;
     flex-direction: column;
     text-align: left;
+    z-index: 1;
 
     .label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(0, 243, 255, 0.7);
       letter-spacing: 1px;
-      color: #555;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
     }
 
     .value {
-      font-size: 1rem;
+      font-family: 'Rajdhani', sans-serif; /* Asigură-te că ai importat Rajdhani */
+      font-size: 1.1rem;
       font-weight: 600;
-      color: #ddd;
+      color: #fff;
     }
   }
 
-  /* Săgeata din dreapta */
   .arrow-icon {
-    font-size: 1.2rem;
-    color: #444;
-    transform: translateX(-10px);
+    color: var(--neon-cyan);
     opacity: 0;
-    transition: all 0.3s ease;
+    transform: translateX(-20px);
+    transition: all 0.4s ease;
   }
 
-  /* --- HOVER EFFECT --- */
+  /* --- EFECTUL WOW: REFLEXIE DE LUMINĂ (SHINE) --- */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Pornesc din afara cardului */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.5s;
+    pointer-events: none;
+  }
+
+  /* --- HOVER STATES --- */
   &:hover {
-    background: rgba(0, 243, 255, 0.03); /* Foarte puțin albastru */
-    border-color: var(--neon-blue); /* Linia devine neon */
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-    transform: translateX(5px); /* Se mișcă puțin la dreapta */
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+    transform: translateX(8px);
+    background: rgba(0, 243, 255, 0.03);
 
-    .icon-box { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
-    .text-box .label { color: var(--neon-blue); }
-    .text-box .value { color: #fff; }
+    /* Animam reflexia */
+    &::before {
+      left: 150%;
+      transition: 0.7s;
+    }
 
-    /* Săgeata apare */
+    .icon-box {
+      background: rgba(0, 243, 255, 0.1);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    }
+
     .arrow-icon {
       opacity: 1;
       transform: translateX(0);
-      color: var(--neon-blue);
     }
-  }
-
-  /* Active State (Click) */
-  &:active {
-    transform: scale(0.98);
   }
 }
 
-/* Stil special pentru Info Blocks (cele fără link) */
+/* Stil pentru blocurile statice (fără link) */
 .info-block {
   cursor: default;
   &:hover {
     transform: none; /* Nu se mișcă */
+    border-color: rgba(255, 255, 255, 0.2);
     box-shadow: none;
-    border-color: rgba(255, 255, 255, 0.2); /* Doar se luminează puțin bordura */
-    background: rgba(255, 255, 255, 0.03);
-
-    .icon-box { color: #ccc; text-shadow: none; }
-    .text-box .label { color: #888; }
+    &::before { display: none; } /* Fără efect de shine */
+    .icon-box { color: #aaa; background: rgba(255, 255, 255, 0.05); box-shadow: none; }
   }
 }
-.about-section {
-  /* SCHIMBARE AICI: Reducem drastic padding-ul de sus */
-  padding-top: 20px;     /* Era 100px - acum punem doar 20px sau chiar 0 */
-  padding-bottom: 100px; /* Jos păstrăm spațiu */
+/* --- SPECIAL STYLE: RESUME / CV CARD (ULTIMUL ELEMENT) --- */
+.data-blocks-list .data-block:last-child {
+  border-color: rgba(255, 0, 255, 0.4); /* Bordură roz-mov */
+  background: rgba(255, 0, 255, 0.03); /* Fundal foarte fin roz */
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.05); /* Glow discret */
 
-  position: relative;
-  overflow: hidden;
+  .icon-box {
+    color: var(--neon-magenta);
+    background: rgba(255, 0, 255, 0.1);
+    animation: bounce 2s infinite ease-in-out;
+  }
 
-  /* ... restul codului (glow, background) rămâne la fel ... */
+  .text-box .label {
+    color: var(--neon-magenta);
+    font-weight: 700;
+  }
+
+  /* La hover devine și mai intens */
+  &:hover {
+    border-color: var(--neon-magenta);
+    background: rgba(255, 0, 255, 0.08);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+    transform: translateX(8px) scale(1.02); /* Se mărește puțin */
+
+    .icon-box {
+      box-shadow: 0 0 15px var(--neon-magenta);
+    }
+
+    .arrow-icon {
+      color: var(--neon-magenta);
+    }
+  }
+}
+
+/* Animație subtilă pentru iconița de CV */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }

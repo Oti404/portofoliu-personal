@@ -2,13 +2,17 @@
   "name": "portofoliu-personal",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "deploy": "ng build --base-href / && echo otniel-iacob.website > dist/portofoliu-personal/browser/CNAME && copy dist\\portofoliu-personal\\browser\\index.html dist\\portofoliu-personal\\browser\\404.html && npx gh-pages -d dist/portofoliu-personal/browser"
-  },
+  "ng": "ng",
+  "start": "ng serve",
+  "build": "ng build",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test",
+
+  "// --- COMENZI DEPLOY ---": "",
+  "predeploy": "ng build --base-href / && echo otniel-iacob.website > dist/portofoliu-personal/browser/CNAME",
+  "deploy-gh": "npx gh-pages -d dist/portofoliu-personal/browser",
+  "full-deploy": "npm run predeploy && npm run deploy-gh"
+},
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,

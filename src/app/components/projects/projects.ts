@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../../services/data';
+
+// --- IMPORT DIRECT ---
+// Ajustează calea ('../../service/projects') dacă fișierul tău e în alt loc
+import { academicData } from '../../services/projects';
 
 @Component({
   selector: 'app-projects',
@@ -9,9 +12,28 @@ import { DataService } from '../../services/data';
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
 })
-export class Projects {
-  private service = inject(DataService);
+export class Projects implements OnInit {
 
-  // Accesăm lista de proiecte din serviciu
-  public projectList = this.service.data.projects;
+  // Variabila care va ține lista finală sortată
+  public sortedProjects: any[] = [];
+
+  ngOnInit() {
+    this.processProjects();
+  }
+
+ private processProjects() {
+    const rawProjects = academicData.projects;
+
+    this.sortedProjects = [...rawProjects]
+      .filter(p => p.display === true) // <--- FILTRARE NOUĂ: Doar cele cu display true
+      .sort((a, b) => {
+          // ... logica ta de sortare existentă ...
+          if (a.status === 'wip' && b.status !== 'wip') return -1;
+          if (a.status !== 'wip' && b.status === 'wip') return 1;
+
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          return dateB - dateA;
+      });
+  }
 }

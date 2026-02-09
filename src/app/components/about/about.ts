@@ -42,7 +42,7 @@ export class About {
     {
       type: 'info',
       icon: 'location',
-      label: 'Locație',
+      label: 'Location',
       value: '#',
       displayValue: this.profile.location
     },
@@ -52,7 +52,7 @@ export class About {
       icon: 'cv',
       label: 'Resume / CV',
       value: this.profile.cvPdf,
-      displayValue: 'Descarcă PDF'
+      displayValue: 'Download PDF'
     }
   ];
 
