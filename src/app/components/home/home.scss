@@ -84,22 +84,7 @@ $linux-yellow: #fcc624;
     @media (max-width: 600px) { font-size: 1.3rem; }
   }
 
-  .description {
-    color: $text-gray;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 550px;
-    margin: 25px 0;
-    border-left: 3px solid $neon-blue;
-    padding-left: 20px;
 
-    @media (max-width: 1024px) {
-      margin: 20px auto;
-      border-left: none;
-      padding-left: 0;
-    }
-    @media (max-width: 600px) { font-size: 1rem; }
-  }
 
   .cta-buttons {
     display: flex;
@@ -318,3 +303,73 @@ $linux-yellow: #fcc624;
   50% { transform: scale(1.02); box-shadow: 0 0 60px rgba(0, 243, 255, 0.4); }
   100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 243, 255, 0.2); }
 }
+
+/* Șterge vechiul .description și pune asta în interiorul .hero-text */
+
+  .quote-wrapper {
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 3px solid $neon-blue; /* Linia de accent neon */
+
+    .description {
+      color: #ccc; /* Un gri mai deschis, aproape alb */
+      font-size: 1.15rem;
+      font-style: italic; /* Stilul "wisdom" */
+      line-height: 1.6;
+      margin: 0 0 10px 0;
+      font-weight: 300;
+      border: none; /* Ne asigurăm că nu are alte borduri */
+      padding: 0;
+    }
+
+    .author {
+      display: block;
+      color: $neon-blue; /* Autorul e colorat cu accentul site-ului */
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Rajdhani', sans-serif; /* Dacă ai fontul acesta, arată tech */
+    }
+
+    /* --- AJUSTĂRI PENTRU MOBIL --- */
+    @media (max-width: 1024px) {
+      margin: 25px auto;
+      padding-left: 0;
+      border-left: none; /* Scoatem linia laterală */
+      border-top: 2px solid $neon-blue; /* Punem linia sus */
+      padding-top: 20px;
+      width: 90%; /* Să nu fie chiar până în margini */
+      margin-left: auto;
+      margin-right: auto;
+
+      .description {
+        font-size: 1rem;
+      }
+    }
+  }
+h2 {
+    /* Dimensiune și Greutate */
+    font-size: 2.2rem;
+    font-weight: 700; /* Mai gros, ca să se impună */
+    margin-top: 15px;
+    margin-bottom: 25px;
+
+    /* Culoare: Gradient subtil Alb -> Gri Metalic */
+    background: linear-gradient(to right, #ffffff 0%, #aabec2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Fallback pentru browsere vechi */
+    color: #ffffff;
+
+    /* Spațiere litere pentru efect cinematic */
+    letter-spacing: 1.5px;
+    text-transform: uppercase; /* Arată mai multă autoritate */
+
+    /* Ajustare pentru mobil */
+    @media (max-width: 600px) {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+  }
