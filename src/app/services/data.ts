@@ -15,7 +15,7 @@ export class DataService {
       description: 'Building the future with code. I transform complex ideas into simple, fast, and interactive web applications.',
       photo: 'images/profile-picture.jpg',
       avatar: 'assets/tech-core.webp',
-      cvPdf: 'assets/cv.pdf',
+      cvPdf: 'documents/otniel-iacob-cv.pdf',
       location: 'Cluj-Napoca, RO',
       email: 'otniel.contact@gmail.com',
       linkedin: 'https://linkedin.com/in/otniel-iacob',
