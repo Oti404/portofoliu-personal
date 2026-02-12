@@ -22,7 +22,7 @@ export const academicData = {
     // 1. WORK IN PROGRESS (WIP)
     // =================================================================
     {
-      name: "Bachelor's Thesis: NLP in Finance",
+      name: "University Research Project: NLP in Finance",
       description: "Research and development of AI solutions for financial text analysis (Sentiment Analysis). Focus on creating datasets and algorithms for predicting stock market trends.",
       tech: "Python, NLP, Machine Learning, TensorFlow",
       contributors: ["Coord. Assist. Prof. Dr. BRICIU Anamaria"],
